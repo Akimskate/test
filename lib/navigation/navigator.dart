@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:test_task/view/home_page.dart';
 import 'package:test_task/view/person_details.dart';
@@ -7,7 +8,14 @@ class AppNavigator {
 
   static final routes = [
     GetPage(name: Routes.homePage, page: () => HomePage()),
-    GetPage(name: Routes.usedDetails, page: () => PersonDetails()),
+    GetPage(
+      name: Routes.usedDetails,
+      page: () {
+        final userId =
+            Get.arguments['userId'] as int; // Получаем userId из аргументов
+        return PersonDetails(userId: userId);
+      },
+    ),
   ];
 }
 

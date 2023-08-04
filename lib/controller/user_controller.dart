@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_task/data/api/api_client.dart';
 import 'package:test_task/models/user_data_model.dart';
+import 'package:test_task/view/person_details.dart';
 
 class UserController extends GetxController {
   final _apiClient = ApiClient();
@@ -33,14 +34,17 @@ class UserController extends GetxController {
   }
 
   void fetchUserDetails(int userId) async {
-    isLoading.value = true;
     try {
       final userDetails = await _apiClient.fetchDetails(userId);
       selectedUser.value = userDetails;
     } catch (error) {
       rethrow;
-    } finally {
-      isLoading.value = false;
-    }
+    } finally {}
+  }
+
+  void navigateToUserDetails(int userId) {
+    Get.to(() => PersonDetails(
+          userId: userId,
+        ));
   }
 }

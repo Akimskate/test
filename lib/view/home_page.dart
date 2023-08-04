@@ -63,6 +63,10 @@ class UsersList extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 17),
                 ),
                 subtitle: Text(user.email ?? ''),
+                onTap: () {
+                  // Вызывается при клике на элемент списка
+                  userController.navigateToUserDetails(user.id ?? 0);
+                },
               ),
             ),
           );
