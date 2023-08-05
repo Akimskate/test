@@ -10,4 +10,4 @@ In this app used:
 - connectivity plus package for checking internet connection
 - cashed network image package for displaying cached images from internet while working without internet connection
 
-![alt text](https://github.com/Akimskate/test/tree/main/lib/github_media/test_task.gif)
+![](https://github.com/Akimskate/test/tree/main/lib/github_media/test_task.gif)
