@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_task/controller/user_controller.dart';
@@ -15,7 +12,6 @@ class PersonDetails extends StatelessWidget {
 
   PersonDetails({super.key, required this.userId});
   final LocalStorage localStorage = LocalStorage();
-  //final connectivityResult = await Connectivity().checkConnectivity();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +22,6 @@ class PersonDetails extends StatelessWidget {
     if (user.id != null) {
       userController.fetchUserDetails(user.id!);
     }
-
-    //_loadUserDetails();
 
     return Scaffold(
       appBar: AppBar(
@@ -57,10 +51,6 @@ class PersonDetails extends StatelessWidget {
                   child: Icon(Icons.error, color: Colors.white),
                 ),
               ),
-              // child: CircleAvatar(
-              //   backgroundImage: NetworkImage(user.avatar ?? ''),
-              //   radius: 75,
-              // ),
             ),
             const SizedBox(height: 20),
             Text(

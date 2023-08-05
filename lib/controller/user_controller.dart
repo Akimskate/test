@@ -21,6 +21,7 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     fetchDataWithConnectivityCheck(currentPage.value);
   }
 
@@ -79,7 +80,6 @@ class UserController extends GetxController {
 
   Future<void> fetchDataWithConnectivityCheck(int page) async {
     final connectivityResult = await Connectivity().checkConnectivity();
-
     if (connectivityResult == ConnectivityResult.none) {
       await fetchUsersFromLocalStorage();
     } else {
