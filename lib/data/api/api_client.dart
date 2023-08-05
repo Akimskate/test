@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:test_task/models/user_data_model.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -12,7 +13,7 @@ class ApiClient {
 
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
-        print('fetched $page');
+        debugPrint('fetched $page');
         return UserData.fromJson(responseData);
       } else {
         throw Exception('Failed to fetch data');
