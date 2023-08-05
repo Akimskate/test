@@ -44,44 +44,57 @@ class UsersList extends StatelessWidget {
       itemCount: userController.userList.length,
       itemBuilder: ((context, index) {
         final user = userController.userList[index];
+        if (index == userController.userList.length - 2 &&
+            userController.currentPage.value < userController.totalPages) {
+          userController.currentPage.value =
+              userController.currentPage.value + 1;
+          userController
+              .fetchDataWithConnectivityCheck(userController.currentPage.value);
+        }
         return SizedBox(
-          height: 100,
-          child: Card(
-            elevation: 5,
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(16, 5, 16, 12),
-              leading: FittedBox(
-                child: CachedNetworkImage(
-                  imageUrl: user.avatar ?? '',
-                  imageBuilder: (context, imageProvider) => CircleAvatar(
-                    backgroundImage: imageProvider,
-                    radius: 30,
-                  ),
-                  placeholder: (context, url) => const CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    radius: 30,
-                    child: Icon(Icons.person, color: Colors.white),
-                  ),
-                  errorWidget: (context, url, error) => const CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    radius: 30,
-                    child: Icon(Icons.error, color: Colors.white),
-                  ),
+            height: 200,
+            child: Card(
+              elevation: 5,
+              margin: const EdgeInsets.all(10),
+              child: InkWell(
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(16, 5, 16, 12),
+                  child: Column(children: [
+                    FittedBox(
+                      child: CachedNetworkImage(
+                        imageUrl: user.avatar ?? '',
+                        imageBuilder: (context, imageProvider) => CircleAvatar(
+                          backgroundImage: imageProvider,
+                          radius: 40,
+                        ),
+                        placeholder: (context, url) => const CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                          child: Icon(Icons.person, color: Colors.white),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                          child: Icon(Icons.error, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${user.lastName} ${user.firstName}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 17),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(user.email ?? ''),
+                  ]),
                 ),
+                onTap: () {
+                  userController.navigateToUserDetails(user.id ?? 0);
+                },
               ),
-              title: Text(
-                '${user.lastName} ${user.firstName}',
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-              subtitle: Text(user.email ?? ''),
-              onTap: () {
-                userController.navigateToUserDetails(user.id ?? 0);
-              },
-            ),
-          ),
-        );
+            ));
       }),
     );
   }

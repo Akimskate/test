@@ -18,10 +18,11 @@ class UserController extends GetxController {
   var userList = <Data>[].obs;
   var selectedUser = Data().obs;
 
+  int totalPages = 0;
+
   @override
   void onInit() {
     super.onInit();
-
     fetchDataWithConnectivityCheck(currentPage.value);
   }
 
@@ -30,10 +31,11 @@ class UserController extends GetxController {
     try {
       final userData = await _apiClient.fetchData(page);
       userList.addAll(userData.data!);
+      totalPages = userData.totalPages ?? 1;
 
       await localStorage.saveData(
         'all_data',
-        jsonEncode(userData),
+        jsonEncode(userList),
       );
       final savedData = await localStorage.getData('all_data');
       if (savedData != null) {
@@ -70,7 +72,8 @@ class UserController extends GetxController {
     try {
       final savedData = await localStorage.getData('all_data');
       if (savedData != null) {
-        final userData = UserData.fromJson(jsonDecode(savedData));
+        final userDataList = jsonDecode(savedData) as List<dynamic>;
+        final userData = UserData.fromJsonList(userDataList);
         userList.assignAll(userData.data!);
       }
     } catch (error) {

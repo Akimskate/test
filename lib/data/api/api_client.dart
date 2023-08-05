@@ -1,7 +1,8 @@
-import 'package:flutter/foundation.dart';
-import 'package:test_task/models/user_data_model.dart';
-import 'package:http/http.dart';
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart';
+import 'package:test_task/models/user_data_model.dart';
 
 class ApiClient {
   static const String baseUrl = 'https://reqres.in/api';

@@ -28,6 +28,13 @@ class UserData {
     support =
         json['support'] != null ? Support.fromJson(json['support']) : null;
   }
+  factory UserData.fromJsonList(List<dynamic> jsonList) {
+    List<Data> dataList = [];
+    for (var jsonData in jsonList) {
+      dataList.add(Data.fromJson(jsonData));
+    }
+    return UserData(data: dataList);
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
