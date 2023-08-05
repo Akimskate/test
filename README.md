@@ -1,16 +1,13 @@
 # test_task
 
-A new Flutter project.
+This is test task fo work.ua vacancy
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+In this app used:
+- GetX State manager
+- Shared Preferences for saving data without internet connection
+- http package for fetching API requests
+- connectivity plus package for checking internet connection
+- cashed network image package for displaying cached images from internet while working without internet connection
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![alt text](https://github.com/Akimskate/test/tree/main/lib/github_media/test_task.gif)
